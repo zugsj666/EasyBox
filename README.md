@@ -1,82 +1,81 @@
 # EasyBox
 
-EasyBox is an open-source, self-hosted Android proxy client and management panel for beginners and users who do not want to manage node details manually.
+EasyBox 是一个面向新手和不想手动折腾节点细节用户的开源、自托管 Android 代理客户端与管理面板。
 
-The goal is not to build another advanced client with full node editing. EasyBox is designed around a simple user experience: sign in, choose a region if needed, and connect with one tap.
+EasyBox 的目标不是再做一个提供完整节点编辑能力的高级客户端，而是围绕简单体验设计：登录、按需选择地区，然后一键连接。
 
-## Project Status
+## 项目状态
 
-This repository is currently in the skeleton and planning stage.
+当前仓库仍处于项目骨架和规划阶段。
 
-The first implementation milestone is an Android technical verification demo for:
+第一个实现里程碑是 Android 技术验证 Demo，验证内容包括：
 
-- Android `VpnService` permission flow
+- Android `VpnService` 权限申请流程
 - Foreground Service
-- Persistent notification
-- Local sing-box config loading
-- Start proxy
-- Stop proxy
-- View logs
+- 常驻通知
+- 本地 sing-box 配置加载
+- 启动代理
+- 停止代理
+- 查看日志
 
-Full backend APIs, the management panel, subscription parsing, config generation, and Android UI are intentionally not implemented yet.
+完整后端 API、管理面板、订阅解析、配置生成和正式 Android UI 目前尚未实现。
 
-## What EasyBox Provides
+## EasyBox 提供什么
 
-EasyBox provides self-hosted software:
+EasyBox 提供的是自托管软件：
 
-- Android client
-- Backend API
-- Web management panel
-- Shared type packages
-- Subscription parsing package
-- sing-box config builder package
+- Android 客户端
+- 后端 API
+- Web 管理面板
+- 共享类型包
+- 订阅解析包
+- sing-box 配置生成包
 
-EasyBox does not provide:
+EasyBox 不提供：
 
-- Public proxy nodes
-- Proxy services
-- Subscription services
-- Hosted SaaS services
+- 公共代理节点
+- 代理服务
+- 订阅服务
+- 托管 SaaS 服务
 
-Operators are responsible for their own infrastructure, nodes, subscriptions, policies, and local legal compliance.
+部署者需要自行负责基础设施、节点、订阅、使用策略以及所在地法律合规。
 
-## Product Direction
+## 产品方向
 
-The Android client is intentionally simple:
+Android 客户端会刻意保持简单：
 
-- Users can sign in and sign out.
-- Users can connect and disconnect with one tap.
-- Users can choose from server-provided regions.
-- Users can use simple modes such as smart mode or global mode.
-- Users can see remaining traffic, expiration time, announcements, and version information.
+- 用户可以登录和退出登录。
+- 用户可以一键连接和断开。
+- 用户可以选择服务端提供的地区。
+- 用户可以使用智能模式、全局模式等简单模式。
+- 用户可以查看剩余流量、到期时间、公告和版本信息。
 
-The Android client UI must not show node parameters or provide editing/import/export entry points for node configuration.
+Android 客户端 UI 不应展示节点参数，也不应提供节点配置的编辑、导入或导出入口。
 
-Hidden from the client UI:
+客户端 UI 中应隐藏：
 
-- Subscription links
-- Real node addresses
+- 订阅链接
+- 真实节点地址
 - UUIDs
-- Ports
+- 端口
 - SNI
-- Reality parameters
-- TLS parameters
-- Advanced DNS settings
-- Route rule editing
-- Raw config JSON
-- Node import/export
+- Reality 参数
+- TLS 参数
+- 高级 DNS 设置
+- 路由规则编辑
+- 原始配置 JSON
+- 节点导入和导出
 
-## Security Boundary
+## 安全边界
 
-UI hiding is not a security boundary.
+UI 隐藏不是安全边界。
 
-At runtime, the sing-box configuration must contain the connection parameters required to connect to selected nodes. EasyBox does not promise protection against reverse engineering, rooted devices, memory inspection, local file inspection, packet capture, or other adversarial client-side access.
+运行时，sing-box 配置必须包含连接所选节点所需的参数。EasyBox 不承诺防逆向、防 Root 设备、防内存检查、防本地文件检查、防抓包，也不承诺防御其他客户端侧对抗访问。
 
-The MVP may store node `rawConfig` in plaintext on the server side. This is only suitable for a trusted self-hosted environment and early development. Future versions should add encrypted storage for sensitive node configuration.
+MVP 阶段可能会在服务端明文存储节点 `rawConfig`。这只适合可信自托管环境和早期开发阶段。后续版本应为敏感节点配置增加加密存储。
 
-Client traffic reports in the MVP are only rough statistics and must not be treated as trusted billing data.
+MVP 阶段的客户端流量上报只作为粗略统计，不应被视为可信计费数据。
 
-## License
+## 许可证
 
-EasyBox is licensed under the Apache License, Version 2.0. See [LICENSE](./LICENSE) and [NOTICE](./NOTICE).
-
+EasyBox 使用 Apache License 2.0 许可。详见 [LICENSE](./LICENSE) 和 [NOTICE](./NOTICE)。
